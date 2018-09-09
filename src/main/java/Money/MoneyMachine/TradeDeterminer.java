@@ -1,3 +1,4 @@
+package Money.MoneyMachine;
 import java.util.ArrayList;
 import java.util.*;
 

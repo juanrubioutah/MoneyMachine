@@ -1,4 +1,4 @@
-
+package Money.MoneyMachine;
 public class Trader {
 	public Trader() {
 		

@@ -1,4 +1,4 @@
-
+package Money.MoneyMachine;
 public class OptionData { //OptionData tracks the data we know about options traded by others
 	String ticker;
 	double callPercent, putPercent;

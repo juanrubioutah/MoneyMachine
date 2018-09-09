@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author juanr
- *
- */
-module MoneyMachine {
-}

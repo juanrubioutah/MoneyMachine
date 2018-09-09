@@ -1,4 +1,4 @@
-
+package Money.MoneyMachine;
 public class Option { //The Option class keeps track of options we own
 	String ticker;
 	double strikePrice, expiration, pricePaid;
