@@ -7,10 +7,10 @@ public class TradeDeterminer {
 	public TradeDeterminer(ArrayList<OptionData> options) {
 		goodOptions = new HashMap<OptionData, Integer>();
 		for(int i = 0; i<options.size(); i++) {
-			if(options.get(i).callPercent>=.80) {
+			if(options.get(i).callPercent>=.75) {
 				goodOptions.put(options.get(i), 0);
 			}
-			else if(options.get(i).putPercent>=.80) {
+			else if(options.get(i).putPercent>=.75) {
 				goodOptions.put(options.get(i), 1);
 			}
 		}
@@ -32,5 +32,9 @@ public class TradeDeterminer {
 				System.out.println("PUT");
 			}
 		}
+		System.out.println("\n\n\n");
+	}
+	public HashMap<OptionData, Integer> getGoodOptions(){
+		return goodOptions;
 	}
 }
