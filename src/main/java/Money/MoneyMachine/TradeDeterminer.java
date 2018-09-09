@@ -3,20 +3,23 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class TradeDeterminer {
-	public static HashMap<OptionData, Integer> goodOptions;
+	public HashMap<OptionData, Integer> goodOptions = new HashMap<OptionData, Integer>();
 	public TradeDeterminer(ArrayList<OptionData> options) {
 		goodOptions = new HashMap<OptionData, Integer>();
 		for(int i = 0; i<options.size(); i++) {
-			if(options.get(i).callPercent>=80) {
+			if(options.get(i).callPercent>=.80) {
 				goodOptions.put(options.get(i), 0);
 			}
-			else if(options.get(i).putPercent>=80) {
+			else if(options.get(i).putPercent>=.80) {
 				goodOptions.put(options.get(i), 1);
 			}
 		}
 		print();
 	}
 	public void print() {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Good Options:\n");
+		
 		Set<OptionData> goodSet = goodOptions.keySet();
 		Iterator itr = goodSet.iterator();
 		while(itr.hasNext()) {
