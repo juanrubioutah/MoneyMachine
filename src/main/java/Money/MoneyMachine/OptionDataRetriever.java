@@ -33,15 +33,15 @@ public class OptionDataRetriever {
 		int curIndex = 0;
 
 		//run until there are no more occurences of "avg_total_calls", which means that there are no more options left in the jason array
-		while(jsonString.indexOf("\"avg_total_calls\":", curIndex + 1) > -1) {
+		while(jsonString.indexOf("\"call_volume\":", curIndex + 1) > -1) {
 			//convert the string version of the json array of options objects into OptionData objects and insert them into the optionData ArrayList
-			curIndex = jsonString.indexOf("\"avg_total_calls\":", curIndex + 1); 
-			int valueIndex = curIndex + "\"avg_total_calls\":".length();
+			curIndex = jsonString.indexOf("\"call_volume\":", curIndex + 1); 
+			int valueIndex = curIndex + "\"call_volume\":".length();
 			String strAvgTotalCalls = jsonString.substring(valueIndex, jsonString.indexOf(',', valueIndex));
 			int AvgTotalCalls = Integer.parseInt(strAvgTotalCalls);
 
-			curIndex = jsonString.indexOf("\"avg_total_puts\":", curIndex);
-			valueIndex = curIndex + "\"avg_total_puts\":".length();
+			curIndex = jsonString.indexOf("\"put_volume\":", curIndex);
+			valueIndex = curIndex + "\"put_volume\":".length();
 			String strAvgTotalPuts = jsonString.substring(valueIndex, jsonString.indexOf(',', valueIndex));
 			int AvgTotalPuts = Integer.parseInt(strAvgTotalPuts);
 			
@@ -53,6 +53,7 @@ public class OptionDataRetriever {
 			double percentCalls = (double)AvgTotalCalls / (double)avgTotalOptions;
 			double percentPuts = (double)AvgTotalPuts / (double)avgTotalOptions;
 			OptionData optionDataObject = new OptionData(symbol, percentCalls, percentPuts);
+			System.out.println(symbol + " " + percentCalls + " " + percentPuts);
 			this.optionData.add(optionDataObject);
 		}
 		
