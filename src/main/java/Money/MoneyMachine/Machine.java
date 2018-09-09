@@ -9,6 +9,8 @@ public class Machine {
 	public static void main(String args[]) throws IOException {
 		OptionDataRetriever retriever = new OptionDataRetriever();
 		ArrayList<OptionData> options = retriever.retrieveOptionDataFrom(customTableEquitiesURL);
+		
+		//TODO: the outputs from TradeDeterminer are not working
 		TradeDeterminer determiner = new TradeDeterminer(options);
 	}
 
