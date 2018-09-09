@@ -17,7 +17,7 @@ import org.apache.commons.io.IOUtils;
  */
 public class OptionDataRetriever {
 	
-	private ArrayList<OptionData> optionData = new ArrayList<OptionData>();
+	public static ArrayList<OptionData> optionData = new ArrayList<OptionData>();
 	private String jsonString;
 	
 	public ArrayList<OptionData> retrieveOptionDataFrom(String url) throws IOException{

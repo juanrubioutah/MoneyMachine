@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class TradeDeterminer {
+	public static Set<OptionData> goodSet;
 	public HashMap<OptionData, Integer> goodOptions = new HashMap<OptionData, Integer>();
 	public TradeDeterminer(ArrayList<OptionData> options) {
 		goodOptions = new HashMap<OptionData, Integer>();
@@ -20,7 +21,7 @@ public class TradeDeterminer {
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("Good Options:\n");
 		
-		Set<OptionData> goodSet = goodOptions.keySet();
+		goodSet = goodOptions.keySet();
 		Iterator itr = goodSet.iterator();
 		while(itr.hasNext()) {
 			OptionData temp = (OptionData) itr.next();
