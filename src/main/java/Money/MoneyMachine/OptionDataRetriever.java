@@ -21,6 +21,7 @@ public class OptionDataRetriever {
 	private String jsonString;
 	
 	public ArrayList<OptionData> retrieveOptionDataFrom(String url) throws IOException{
+		//TODO: implement failure detection
 		retrieveJSON(url);
 		if(convertJsonToOptionData(jsonString)) {
 			return optionData;
