@@ -32,15 +32,18 @@ public class RobinhoodClient {
 		url = new URL(robinhoodURL);
 		con = (HttpsURLConnection)url.openConnection();
 		
+		//TODO: this gets response code 405 (connection not allowed)
 		responseCode = con.getResponseCode();
 		System.out.println("HTTPS Response: " + responseCode);
 	}
 	
 	public boolean logIn(String user, String pass) throws IOException {
+		//post a request
 		con.setRequestMethod("POST");
 		con.connect();
 		con.setRequestProperty("Content-Type", "application/json");
 		OutputStream os = con.getOutputStream();
+		//write JSON content to the output stream
 		OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
 		osw.write("{"
 				+ "\"client_id\":\"c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS\","
@@ -54,6 +57,7 @@ public class RobinhoodClient {
 		osw.close();
 		os.close();
 		
+		//receive a response
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(),"utf-8"));
 		String line = null;
