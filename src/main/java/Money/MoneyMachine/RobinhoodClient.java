@@ -2,70 +2,53 @@ package Money.MoneyMachine;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 
-import javax.net.ssl.HttpsURLConnection;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import com.google.gson.JsonObject;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class RobinhoodClient {
 	
 	String auth_token; //auth_token for the session
 	private String robinhoodURL = "https://api.robinhood.com/oauth2/token/";
-	private URL url;  
-	private HttpsURLConnection con;
-	private int responseCode; //HTTPS response code
 	
-	/* TODO: test code
 	public static void main(String args[]) throws IOException {
 		RobinhoodClient cli = new RobinhoodClient();
 		cli.logIn("test", "test");
 	}
-	*/
 
 	public RobinhoodClient() throws IOException {
-		url = new URL(robinhoodURL);
-		con = (HttpsURLConnection)url.openConnection();
-		
-		//TODO: this gets response code 405 (connection not allowed)
-		responseCode = con.getResponseCode();
-		System.out.println("HTTPS Response: " + responseCode);
+
 	}
 	
 	public boolean logIn(String user, String pass) throws IOException {
 		//post a request
-		con.setRequestMethod("POST");
-		con.connect();
-		con.setRequestProperty("Content-Type", "application/json");
-		OutputStream os = con.getOutputStream();
-		//write JSON content to the output stream
-		OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
-		osw.write("{"
-				+ "\"client_id\":\"c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS\","
-				+ "\"expires_in\":\"86400\","
-				+ "\"grant_type\":\"password\","
-				+ "\"password\":\"Ch!spas159896\","
-				+ "\"scope\":\"password\","
-				+ "\"username\":\"juan.r896@slcstudents.org\""
-				+ "}");
-		osw.flush();
-		osw.close();
-		os.close();
-		
-		//receive a response
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(),"utf-8"));
-		String line = null;
-		while((line = br.readLine()) != null) {
-			sb.append(line + "\n");
+		try {
+			HttpResponse<String> jsonResponse = Unirest.post(robinhoodURL)
+					.header("content-type", "application/json")
+					.field("client_id", "c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS")
+					.field("expires_in", "86400")
+					.field("password", "Ch!spas159896")
+					.field("scope", "internal")
+					.field("username", "juan.r896@slcstudents.org")
+					.asString();
+			
+			System.out.println(jsonResponse.getBody().toString());
+
+			//JSONObject response = jsonResponse.getBody().getObject();
+			//System.out.println(response.toString());
+
+		} catch (UnirestException e) {
+			// TODO Auto-generated catch block
+			System.out.println("There was an error with the Log In HTTP request");
+			e.printStackTrace();
 		}
-		br.close();
-		System.out.println("" + sb.toString());
+		
+		
 		
 		return false;
 	}
