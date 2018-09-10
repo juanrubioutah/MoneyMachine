@@ -30,11 +30,11 @@ public class RobinhoodClient {
 		try {
 			HttpResponse<String> jsonResponse = Unirest.post(robinhoodURL)
 					.header("content-type", "application/json")
-					.field("client_id", "c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS")
-					.field("expires_in", "86400")
-					.field("password", "Ch!spas159896")
-					.field("scope", "internal")
 					.field("username", "juan.r896@slcstudents.org")
+					.field("password", "Ch!spas159896")
+					.field("grant_type", "password")
+					.field("scope", "internal")
+					.field("client_id", "c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS")
 					.asString();
 			
 			System.out.println(jsonResponse.getBody().toString());
