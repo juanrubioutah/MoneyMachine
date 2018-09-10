@@ -14,7 +14,9 @@ public class Machine {
 	
 	public static ArrayList<Option> currentlyHeldOptions = new ArrayList<Option>();
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
+		retrieve();
+		
 		System.out.println("Enter Username: ");
 		Scanner nameReader = new Scanner(System.in);
 		String name = nameReader.next();
@@ -39,7 +41,7 @@ public class Machine {
 		long tick = (long)tickTime*1000;
 		Ticker ticker = new Ticker(tick);
 	}
-	public void retrieve() throws IOException{
+	public static void retrieve() throws IOException{
 		OptionDataRetriever retriever = new OptionDataRetriever();
 		ArrayList<OptionData> options = retriever.retrieveOptionDataFrom(customTableEquitiesURL);
 		

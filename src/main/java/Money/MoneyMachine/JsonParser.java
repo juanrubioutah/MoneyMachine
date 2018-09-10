@@ -40,11 +40,19 @@ public class JsonParser {
 		return true;
 	}
 	
+	public boolean hasNextAttribute(String attribute) {
+		if(jsonString.indexOf("\"" + attribute + "\":", curIndex + 1) > -1) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public String getValueOfNextAttribute(String attribute) {
 		String _attribute = "\"" + attribute + "\":"; // turn it from a regular string to a string of a string (attribute -> "attribute":)
-		if(jsonString.indexOf(_attribute) > -1) {
-			curIndex = jsonString.indexOf(_attribute) + _attribute.length();
-			return jsonString.substring(curIndex, jsonString.indexOf(','));
+		if(jsonString.indexOf(_attribute, curIndex + 1) > -1) {
+			curIndex = jsonString.indexOf(_attribute, curIndex + 1) + _attribute.length();
+			return jsonString.substring(curIndex, jsonString.indexOf(',', curIndex + 1));
 		}else {
 			return "";
 		}
