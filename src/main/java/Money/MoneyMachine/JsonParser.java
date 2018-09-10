@@ -41,10 +41,13 @@ public class JsonParser {
 	}
 	
 	public String getValueOfNextAttribute(String attribute) {
-		String _attribute = "\"" + attribute + "\""; // turn it from a regular string to a string of a string (attribute -> "attribute")
-		if(jsonString.indexOf())
-		
-		return "";
+		String _attribute = "\"" + attribute + "\":"; // turn it from a regular string to a string of a string (attribute -> "attribute":)
+		if(jsonString.indexOf(_attribute) > -1) {
+			curIndex = jsonString.indexOf(_attribute) + _attribute.length();
+			return jsonString.substring(curIndex, jsonString.indexOf(','));
+		}else {
+			return "";
+		}
 	}
 	
 }
