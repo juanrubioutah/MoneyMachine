@@ -5,10 +5,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Iterator;
 
 public class Ticker {
 	
 	public Machine machine = new Machine();
+	public static boolean marketsOpen;
 	
 	public Ticker(long msTick) {
 		do {
@@ -34,6 +36,9 @@ public class Ticker {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		NewsReader reader = new NewsReader();
+		Iterator itr = TradeDeterminer.goodSet.iterator();
+		reader.read(((OptionData)itr.next()).ticker+" options");
 	}
 	public boolean marketsOpen() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -42,11 +47,14 @@ public class Ticker {
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
 		if(dayOfWeek == 7||dayOfWeek == 1) {
+			marketsOpen = false;
 			return false;
 		}
 		else if(hour<=7||hour>=2) {
+			marketsOpen = false;
 			return false;
 		}
+		marketsOpen = true;
 		return true;
 	}
 }

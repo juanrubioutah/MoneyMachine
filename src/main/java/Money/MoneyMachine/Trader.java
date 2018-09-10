@@ -7,4 +7,7 @@ public class Trader {
 		//Option option = new Option();
 		return false;
 	}
+	public boolean sell(Option option) {
+		return false;
+	}
 }
