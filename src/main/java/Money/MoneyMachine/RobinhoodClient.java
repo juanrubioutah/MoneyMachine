@@ -28,9 +28,14 @@ public class RobinhoodClient {
 	Webb webb; //the web client 
 	
 	private boolean connected = false; //true when the client is logged in and has obtained a valid auth_token
-	String auth_token; //auth_token for the session
+	private String auth_token; //auth_token for the session
+	private JSONObject userInfo;
+	
 	private String robinhoodURL = "https://api.robinhood.com/oauth2/token/";
 	private String testURL = "https://jsonplaceholder.typicode.com/posts";
+	private String robinhoodAccountsURL = "https://api.robinhood.com/accounts/";
+	
+	int buyingPower;
 	
 	public RobinhoodClient() throws IOException {
 
@@ -82,6 +87,20 @@ public class RobinhoodClient {
 			System.out.println(response.getErrorBody());
 		}
 
+		return false;
+	}
+	
+	public boolean loadUserInfo() {
+		Response<JSONObject> response = webb
+				.get(robinhoodAccountsURL)
+				.header("authorization", "Bearer " + auth_token)
+				.asJsonObject();
+		
+		userInfo = (JSONObject)response.getBody().getJSONArray("results").get(0);
+		System.out.println("Acct #: " + userInfo.get("account_number"));
+		System.out.println("Buying Power: " + userInfo.get("buying_power"));
+		//System.out.println(userInfo.toString());
+		
 		return false;
 	}
 

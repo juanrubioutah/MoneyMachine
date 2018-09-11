@@ -19,17 +19,22 @@ public class Machine {
 		retrieve();
 		
 		//username / password input
+		/*
 		System.out.println("Enter Username: ");
 		Scanner nameReader = new Scanner(System.in);
 		String name = nameReader.next();
 		System.out.println("Enter Password: ");
 		Scanner passReader = new Scanner(System.in);
 		String pass = passReader.next();
+		*/
+		String name = "juan.r896@slcstudents.org";
+		String pass = "Ch!spas159896";
 
 		//initialize the Robinhood client and log in
 		RobinhoodClient api = new RobinhoodClient();
 		if(api.logIn(name, pass)) {
 			//logged in successfully
+			api.loadUserInfo();
 			
 			
 		}else {
