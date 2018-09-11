@@ -15,14 +15,30 @@ public class Machine {
 	public static ArrayList<Option> currentlyHeldOptions = new ArrayList<Option>();
 	
 	public static void main(String args[]) throws IOException {
+		//retrieve stock options volume and percentages and initialize the trade determiner with that information
 		retrieve();
 		
+		//username / password input
 		System.out.println("Enter Username: ");
 		Scanner nameReader = new Scanner(System.in);
 		String name = nameReader.next();
 		System.out.println("Enter Password: ");
 		Scanner passReader = new Scanner(System.in);
 		String pass = passReader.next();
+
+		//initialize the Robinhood client and log in
+		RobinhoodClient api = new RobinhoodClient();
+		if(api.logIn(name, pass)) {
+			//logged in successfully
+			
+			
+		}else {
+			//log in failed
+			
+			
+		}
+
+		/*
 		try {
 			RobinhoodApi api = new RobinhoodApi();
 			api.logUserIn(name, pass);
@@ -35,6 +51,8 @@ public class Machine {
 			System.out.println("ERROR: Not logged in exception");
 			f.printStackTrace();
 		}
+		*/
+
 		System.out.println("Enter a tick time (in seconds): ");
 		Scanner tickReader = new Scanner(System.in);
 		int tickTime = tickReader.nextInt();

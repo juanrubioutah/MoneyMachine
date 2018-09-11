@@ -76,7 +76,7 @@ public class RobinhoodClient {
 			System.out.println(response.getBody().toString());
 			*/
 		}else {
-			System.out.println("The request to " + robinhoodURL + " was unsuccessful\n");
+			System.out.println("The log in request to " + robinhoodURL + " was unsuccessful\n");
 			System.out.println(response.getStatusCode());
 			System.out.println(response.getResponseMessage());
 			System.out.println(response.getErrorBody());

@@ -38,7 +38,7 @@ public class Ticker {
 		}
 		NewsReader reader = new NewsReader();
 		Iterator itr = TradeDeterminer.goodSet.iterator();
-		reader.read(((OptionData)itr.next()).ticker+" options");
+		//reader.read(((OptionData)itr.next()).ticker+" options");
 	}
 	public boolean marketsOpen() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
