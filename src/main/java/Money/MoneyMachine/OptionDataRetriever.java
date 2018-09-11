@@ -34,6 +34,7 @@ public class OptionDataRetriever {
 	}
 	
 	public boolean convertJsonToOptionData(JsonParser json) {
+		//TODO: use the actual JSONObject library instead of my crappier self-made version
 
 		while(json.hasNextAttribute("call_volume")) {
 			String strCallVolume = json.getValueOfNextAttribute("call_volume");
