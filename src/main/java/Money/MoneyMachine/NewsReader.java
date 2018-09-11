@@ -11,8 +11,6 @@ import org.jsoup.nodes.Document;
 
 public class NewsReader { //Reads news about potential trades and acts accordingly
 	
-	public String jsonString;
-	
 	//TODO: test code
 	/*
 	public static void main(String args[]) throws IOException {
