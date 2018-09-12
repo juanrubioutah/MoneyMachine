@@ -19,7 +19,7 @@ public class Machine {
 	
 	public static void main(String args[]) throws IOException {
 		//retrieve stock options volume and percentages and initialize the trade determiner with that information
-		retrieve();
+		//retrieve();
 		
 		//username / password input
 		/*
