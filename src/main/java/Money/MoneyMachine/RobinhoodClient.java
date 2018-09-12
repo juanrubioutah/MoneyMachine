@@ -35,6 +35,7 @@ public class RobinhoodClient {
 	private String testURL = "https://jsonplaceholder.typicode.com/posts";
 	private String robinhoodAccountsURL = "https://api.robinhood.com/accounts/";
 	private String robinhoodStockFundamentalsURL = "https://api.robinhood.com/fundamentals/";
+	private String robinhoodOptionsInstrumentsURL = "https://api.robinhood.com/options/instruments/";
 	
 	int buyingPower;
 	
@@ -119,6 +120,22 @@ public class RobinhoodClient {
 		}
 
 		return null;
+	}
+	
+	public JSONObject getStockInstruments(String ticker) {
+		JSONObject fundamentals = this.getStockFundamentals(ticker);
+		
+		String instrumentURL = (String)fundamentals.get("instrument");
+		Response<JSONObject> response = webb
+				.get(instrumentURL)
+				.asJsonObject();
+		
+		if(response.isSuccess()) {
+			return response.getBody();
+		}else {
+			System.out.println("There was a problem retrieving the Stock Instruments from URL: " + instrumentURL);
+			return null;
+		}
 	}
 
 }

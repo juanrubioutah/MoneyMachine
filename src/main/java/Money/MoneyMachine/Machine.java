@@ -38,10 +38,6 @@ public class Machine {
 			//logged in successfully
 			api.loadUserInfo();
 			
-			//TODO: test code
-			JSONObject aaplFundamentals = api.getStockFundamentals("AAPL");
-			System.out.println(aaplFundamentals.toString());
-			
 		}else {
 			//log in failed
 			
