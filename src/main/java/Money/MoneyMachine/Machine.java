@@ -3,6 +3,8 @@ package Money.MoneyMachine;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.json.JSONObject;
+
 import conrad.weiser.robinhood.api.RobinhoodApi;
 import conrad.weiser.robinhood.api.throwables.RobinhoodApiException;
 import conrad.weiser.robinhood.api.throwables.RobinhoodNotLoggedInException;
@@ -36,6 +38,9 @@ public class Machine {
 			//logged in successfully
 			api.loadUserInfo();
 			
+			//TODO: test code
+			JSONObject aaplFundamentals = api.getStockFundamentals("AAPL");
+			System.out.println(aaplFundamentals.toString());
 			
 		}else {
 			//log in failed
@@ -58,7 +63,7 @@ public class Machine {
 		}
 		*/
 
-		System.out.println("Enter a tick time (in seconds): ");
+		System.out.println("\nEnter a tick time (in seconds): ");
 		Scanner tickReader = new Scanner(System.in);
 		int tickTime = tickReader.nextInt();
 		long tick = (long)tickTime*1000;
