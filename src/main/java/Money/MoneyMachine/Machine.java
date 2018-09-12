@@ -3,6 +3,7 @@ package Money.MoneyMachine;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import conrad.weiser.robinhood.api.RobinhoodApi;
@@ -37,6 +38,11 @@ public class Machine {
 		if(api.logIn(name, pass)) {
 			//logged in successfully
 			api.loadUserInfo();
+			
+			//TODO: test getStockOptions code
+			JSONArray stockOptions;
+			stockOptions = api.getStockOptions("AAPL");
+			System.out.println(stockOptions.getJSONObject(0).toString());
 			
 		}else {
 			//log in failed

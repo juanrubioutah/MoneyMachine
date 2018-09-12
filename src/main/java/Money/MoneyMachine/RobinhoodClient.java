@@ -137,5 +137,28 @@ public class RobinhoodClient {
 			return null;
 		}
 	}
+	
+	public JSONArray getStockOptions(String ticker) {
+		JSONObject instruments = this.getStockInstruments(ticker);
+		String chainIdURL = robinhoodOptionsInstrumentsURL 
+							+ "?chain_id=" + instruments.get("tradable_chain_id")
+							+ "&expiration_dates=2018-09-14"
+							+ "&state=active"
+							+ "&tradability=tradable"
+							+ "&type=call";
+		Response<JSONObject> response = webb
+				.get(chainIdURL)
+				.asJsonObject();
+		
+		if(response.isSuccess()) {
+			System.out.println("Retrieved options from URL: " + chainIdURL);
+			JSONArray optionsArray = response.getBody().getJSONArray("results");
+
+			return optionsArray;
+		}else {
+			System.out.println("There was a problem retrieving the stock options from URL: " + chainIdURL);
+			return null;
+		}
+	}
 
 }
