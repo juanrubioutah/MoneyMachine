@@ -33,6 +33,7 @@ public class Machine {
 		String name = "juan.r896@slcstudents.org";
 		String pass = "Ch!spas159896";
 
+		/*
 		//initialize the Robinhood client and log in
 		RobinhoodClient api = new RobinhoodClient();
 		if(api.logIn(name, pass)) {
@@ -49,8 +50,8 @@ public class Machine {
 			
 			
 		}
+		*/
 
-		/*
 		try {
 			RobinhoodApi api = new RobinhoodApi();
 			api.logUserIn(name, pass);
@@ -63,7 +64,6 @@ public class Machine {
 			System.out.println("ERROR: Not logged in exception");
 			f.printStackTrace();
 		}
-		*/
 
 		System.out.println("\nEnter a tick time (in seconds): ");
 		Scanner tickReader = new Scanner(System.in);
