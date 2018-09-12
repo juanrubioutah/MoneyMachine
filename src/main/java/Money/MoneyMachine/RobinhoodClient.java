@@ -13,6 +13,7 @@ import com.goebl.david.Response;
 import com.goebl.david.Webb;
 
 /**
+ * TODO: replace this with the Little John API (more robust, with exceptions and more object orientedness...)
  * 
  * @author Parker Nilson
  * 
