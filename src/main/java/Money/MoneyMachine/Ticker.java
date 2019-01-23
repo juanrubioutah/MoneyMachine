@@ -50,7 +50,7 @@ public class Ticker {
 			marketsOpen = false;
 			return false;
 		}
-		else if(hour<=7||hour>=2) {
+		else if(hour<=6||hour>=4) {
 			marketsOpen = false;
 			return false;
 		}

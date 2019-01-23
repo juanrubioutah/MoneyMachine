@@ -9,7 +9,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  * 
- * @author Parker Nilson
+ * @author Parker Nilson and Juan Rubio
  * 
  * The GetOptionData class contains an arraylist of OptionData objects
  * and methods for obtaining that data from the internet.
@@ -24,6 +24,8 @@ public class OptionDataRetriever {
 	
 	public ArrayList<OptionData> retrieveOptionDataFrom(String url) throws IOException{
 		//TODO: implement failure detection
+		
+		optionData.clear();
 		
 		JsonParser json = new JsonParser();
 		json.fetchJson(url);
@@ -50,7 +52,7 @@ public class OptionDataRetriever {
 			double percentCalls = (double)callVolume / (double)totalOptions;
 			double percentPuts = (double)putVolume / (double)totalOptions;
 			OptionData optionDataObject = new OptionData(ticker, percentCalls, percentPuts);
-			System.out.println(ticker + " " + percentCalls + " " + percentPuts);
+			System.out.println(ticker + " " + Math.round(percentCalls*100) + "% " + Math.round(percentPuts*100)+"%");
 			this.optionData.add(optionDataObject);
 		}
 		
